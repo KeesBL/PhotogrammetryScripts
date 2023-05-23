@@ -57,4 +57,4 @@ def RelocatePhotosRecursive():
     totalCameraCount = len(chunk.cameras)
     print(f"The recursive relocate process is finished: {locatedCameraCount}/{totalCameraCount} cameras located.")
     
-Metashape.app.addMenuItem("Custom/Relocate Photos in Folder (Recursive)", RelocatePhotosRecursive.RelocatePhotosRecursive)
+Metashape.app.addMenuItem("Custom/Relocate Photos in Folder (Recursive)", RelocatePhotosRecursive)
