@@ -32,4 +32,4 @@ def AddPhotosFromFolderRecursive():
     # Add photos
     Metashape.app.document.chunk.addPhotos(photoPaths)
 
-Metashape.app.addMenuItem("Custom/Add Photos from Folder (Recursive)", AddPhotosFromFolderRecursive.AddPhotosFromFolderRecursive)
+Metashape.app.addMenuItem("Custom/Add Photos from Folder (Recursive)", AddPhotosFromFolderRecursive)
