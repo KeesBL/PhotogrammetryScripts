@@ -1,3 +1,10 @@
+# This script wraps a FFMPEG command that extracts still frames from a video.
+# The wrapper is intended to be faster/more user friendly than using the command line directly.
+# FFmpeg must be installed for this script to work (https://ffmpeg.org/download.html).
+# PowerShell must be enabled for this script to work:
+#	1) Start Windows PowerShell with the "Run as Administrator" option.
+#	2) Run the command "set-executionpolicy remotesigned" to enable PowerShell.
+
 # Notices
 Write-Host ">>> Get Frames Fast w/ FFmpeg"
 Write-Host ">>> Kees Beemster Leverenz, 2021"
