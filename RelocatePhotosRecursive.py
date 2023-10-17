@@ -38,10 +38,9 @@ def RelocatePhotosRecursive():
     output = ""
     totalCameras = len(chunk.cameras)
     for camera in chunk.cameras:
-
-        # Report progress
-        if (currentCamera % 100 == 0):
-            print(f"{currentCamera}/{totalCameras} cameras processed. {locatedCameraCount} cameras found.")
+    
+        # Record progress
+        currentCamera += 1
 
         # [Guard] If the camera path exists, the camera is already located and can be ignored
         cameraPathExists = os.path.isfile(camera.photo.path)
@@ -59,8 +58,9 @@ def RelocatePhotosRecursive():
         else:
             output += f"The photo '{fileName}' does not have a match or unique match.\n"
 
-        # Record progress
-        currentCamera += 1
+        # Report progress
+        if (currentCamera % 100 == 0):
+            print(f"{currentCamera}/{totalCameras} cameras processed. {locatedCameraCount} cameras found.")
 
         # Keep UI alive
         app.update()
@@ -68,5 +68,6 @@ def RelocatePhotosRecursive():
     # Completion message
     totalCameraCount = len(chunk.cameras)
     app.messageBox(f"The recursive relocate process is finished: {locatedCameraCount}/{totalCameraCount} cameras located.")
+
     
 Metashape.app.addMenuItem("Custom/Relocate Photos in Folder (Recursive)", RelocatePhotosRecursive)
