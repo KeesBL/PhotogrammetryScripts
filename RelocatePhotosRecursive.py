@@ -7,7 +7,7 @@ from pathlib import Path
 # another file with exactly the same name. If found, it will automatically relocate the image.
 # If there are zero filename matches or more than one filename match, the image will be skipped.
 #
-# (c) Kees Beemster Leverenz 2022
+# (c) Kees Beemster Leverenz 2023
 
 def RelocatePhotosRecursive():
 
@@ -18,43 +18,55 @@ def RelocatePhotosRecursive():
 
     # Get photos (rglob is recursive)
     jpgGlobPattern = "*.[jJ][pP][gG]"
-    photos = list(Path(inputDirectoryPath).rglob(jpgGlobPattern))
+    pngGlobPattern = "*.[pP][nN][gG]"
+    jpgFiles = list(Path(inputDirectoryPath).rglob(jpgGlobPattern))
+    pngFiles = list(Path(inputDirectoryPath).rglob(pngGlobPattern))
+    photos = jpgFiles + pngFiles
+
+    # Create an index to look up photo paths by their filename
+    # Only distinct filenames are used here. 
+    # Any image with more than one path per file name is ignored.
+    photoNames = [path.name for path in photos]
+    photosIndex = {} 
+    for photo in photos:
+        if (photoNames.count(photo.name) == 1):
+            photosIndex[photo.name] = photo
 
     # Loop through photos in current chunk
     locatedCameraCount = 0
+    currentCamera = 0
+    output = ""
+    totalCameras = len(chunk.cameras)
     for camera in chunk.cameras:
-    
-        # [Guard] If the camera path exists, the camera is located
+
+        # Report progress
+        if (currentCamera % 100 == 0):
+            print(f"{currentCamera}/{totalCameras} cameras processed. {locatedCameraCount} cameras found.")
+
+        # [Guard] If the camera path exists, the camera is already located and can be ignored
         cameraPathExists = os.path.isfile(camera.photo.path)
         if cameraPathExists: 
             locatedCameraCount += 1
             continue            
 
-        # Get current file name and search for matching file names
-        currentPath = camera.photo.path
-        fileName = Path(currentPath).stem
-        newPathOptions = [photo for photo in photos if Path(photo).stem == fileName]
+        # Get the current camera's file name
+        fileName = Path(camera.photo.path).name
 
-        # Change path if exactly one match was found
-        newPathOptionsCount = len(newPathOptions)
-        if (newPathOptionsCount == 1): 
-            camera.photo.path = os.path.join(inputDirectoryPath, newPathOptions[0])
+        # Check if a match is found
+        if fileName in photosIndex:
+            camera.photo.path = str(photosIndex[fileName])
             locatedCameraCount += 1
-            print(f"{fileName} was relocated!")
+        else:
+            output += f"The photo '{fileName}' does not have a match or unique match.\n"
 
-        # Warn user about multiple matches found
-        if (newPathOptionsCount > 1):
-            print(f"{fileName} could not be automatically relocated. More than one matching filename exists.")
-
-        # Warn user about zero matches found
-        if (newPathOptionsCount == 0):
-            print(f"{fileName} could not be automatically relocated. No matching filename exists.")
+        # Record progress
+        currentCamera += 1
 
         # Keep UI alive
         app.update()
 
     # Completion message
     totalCameraCount = len(chunk.cameras)
-    print(f"The recursive relocate process is finished: {locatedCameraCount}/{totalCameraCount} cameras located.")
+    app.messageBox(f"The recursive relocate process is finished: {locatedCameraCount}/{totalCameraCount} cameras located.")
     
 Metashape.app.addMenuItem("Custom/Relocate Photos in Folder (Recursive)", RelocatePhotosRecursive)
