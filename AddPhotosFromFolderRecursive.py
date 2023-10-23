@@ -5,9 +5,7 @@ from pathlib import Path
 # This script will add all JPG images in a folder
 # including all subfolders of that folder. 
 #
-# Install by copying this script to %UserProfile%\AppData\Local\Agisoft\Metashape Pro\scripts
-#
-# Kees Beemster Leverenz 2022
+# (c) Kees Beemster Leverenz 2022
 
 def AddPhotosFromFolderRecursive():
 
@@ -31,5 +29,3 @@ def AddPhotosFromFolderRecursive():
     
     # Add photos
     Metashape.app.document.chunk.addPhotos(photoPaths)
-
-Metashape.app.addMenuItem("Custom/Add Photos from Folder (Recursive)", AddPhotosFromFolderRecursive)
