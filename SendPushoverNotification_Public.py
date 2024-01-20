@@ -10,7 +10,7 @@ appToken = "YourAppKeyHere"
 try:
     message = sys.argv[1]
 except:
-    message = "Notification from Agisoft Metashape"   
+    message = "Default notification from Agisoft Metashape"   
 
 # Send push notification
 connection = http.client.HTTPSConnection("api.pushover.net:443")
