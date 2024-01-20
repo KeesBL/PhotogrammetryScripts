@@ -7,7 +7,10 @@ userKey = "YourUserKeyHere"
 appToken = "YourAppKeyHere"
 
 # Message -- for this script, the first argument specified in the prompt or in the batch script. 
-message = sys.argv[1]
+try:
+    message = sys.argv[1]
+except:
+    message = "Notification from Agisoft Metashape"   
 
 # Send push notification
 connection = http.client.HTTPSConnection("api.pushover.net:443")
