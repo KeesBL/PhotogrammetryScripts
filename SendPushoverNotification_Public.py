@@ -1,8 +1,10 @@
 import http.client, urllib, sys
 
-# Auth arguments
-userKey = "u82eurp8nvzbvpbtttf1xyrdd91iy2"
-appToken = "auhvweppes6gxsu1wgxayg5e3eirz7"
+# You will need to modify this section. Obtain a user key by ...
+userKey = "YourUserKeyHere"
+
+# You will need to modify this section. Obtain an app key by ...
+appToken = "YourAppKeyHere"
 
 # Message -- for this script, the first argument specified
 message = sys.argv[1]
