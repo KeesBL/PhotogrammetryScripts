@@ -13,7 +13,7 @@ import DisableEveryOtherCamera
 # This script creates a custom menu of
 # from utility scripts in Metashape.
 # 
-# (c) Kees Beemster Leverenz 2022
+# Kees Beemster Leverenz 2024
 
 # General scripts
 Metashape.app.addMenuItem("Custom/Add Photos from Folder (Recursive)", AddPhotosFromFolderRecursive.AddPhotosFromFolderRecursive)
@@ -24,6 +24,7 @@ Metashape.app.addMenuItem("Custom/Create New Chunk from Selection", NewChunkFrom
 Metashape.app.addMenuItem("Custom/Count Enabled Cameras", CountEnabledCameras.CountEnabledCameras)
 Metashape.app.addMenuItem("Custom/Remove Disabled Cameras", RemoveDisabledCameras.PromptUserToRemove)
 Metashape.app.addMenuItem("Custom/Disable Every Other Camera", DisableEveryOtherCamera.DisableEveryOtherCamera)
+Metashape.app.addMenuItem("Custom/Deduplicate Cameras (Prioritize Unaligned)", DeduplicateCamerasPrioritizeUnaligned.DeduplicateCamerasPrioritizeUnaligned)
 Metashape.app.addMenuSeparator("Custom")
 
 # Organize
