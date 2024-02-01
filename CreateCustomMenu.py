@@ -8,7 +8,7 @@ import RenamePhotosInPlace
 import ExtractFramesFast
 import VerifyImagesInDirectory
 import DisableEveryOtherCamera
-
+import DeduplicateCamerasPrioritizeUnaligned
 
 # This script creates a custom menu of
 # from utility scripts in Metashape.
