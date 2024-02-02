@@ -9,6 +9,7 @@ import ExtractFramesFast
 import VerifyImagesInDirectory
 import DisableEveryOtherCamera
 import DeduplicateCamerasPrioritizeUnaligned
+import AddNewPhotosFromFolder
 
 # This script creates a custom menu of
 # from utility scripts in Metashape.
@@ -18,6 +19,7 @@ import DeduplicateCamerasPrioritizeUnaligned
 # General scripts
 Metashape.app.addMenuItem("Custom/Add Photos from Folder (Recursive)", AddPhotosFromFolderRecursive.AddPhotosFromFolderRecursive)
 Metashape.app.addMenuItem("Custom/Relocate Photos in Folder (Recursive)", RelocatePhotosRecursive.RelocatePhotosRecursive)
+Metashape.app.addMenuItem("Custom/Add New Photos from Folder", AddNewPhotosFromFolder.AddNewPhotosFromFolder)
 Metashape.app.addMenuSeparator("Custom")
 
 Metashape.app.addMenuItem("Custom/Create New Chunk from Selection", NewChunkFromSelection.NewChunkFromSelection)
