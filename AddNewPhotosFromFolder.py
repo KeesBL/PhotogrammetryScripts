@@ -29,5 +29,5 @@ def AddNewPhotosFromFolder():
     photoPathsToAdd = [str(item) for item in newPhotosPaths if item not in existingPhotosPaths]
 
     # Add those photos
-    print(photoPathsToAdd)
     chunk.addPhotos(photoPathsToAdd)
+    app.messageBox(str(len(photoPathsToAdd)) + " photo(s) added.")
